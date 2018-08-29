@@ -5,8 +5,9 @@ Application::Application(std::string title, uint width, uint height)
     array{5, 3, 8, 2, 12} {
 
     //Sets the window in the middle of the screen
-    window.setPosition({sf::VideoMode::getDesktopMode().width/2 - window.getSize().x/2
-                       ,sf::VideoMode::getDesktopMode().height/2 - window.getSize().y/2});
+    window.setPosition(sf::Vector2i
+                    (sf::VideoMode::getDesktopMode().width/2 - window.getSize().x/2
+                    ,sf::VideoMode::getDesktopMode().height/2 - window.getSize().y/2));
 }
 
 Application::~Application(){
