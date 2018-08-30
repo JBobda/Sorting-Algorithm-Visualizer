@@ -8,8 +8,14 @@ class Sorter{
     public:
         Sorter();
         ~Sorter();
-        std::array<int, 5> bubbleSort(std::array<int, 5> array);
-        std::array<int, 5> selectionSort(std::array<int, 5> array);
+        //Bubble Sort array template
+        template<size_t arraySize>
+        std::array<int, arraySize> bubbleSort(std::array<int, arraySize> array);
+
+        //Selection Sort array template
+        template<size_t arraySize>
+        std::array<int, arraySize> selectionSort(std::array<int, arraySize> array);
+        
 };
 
 #endif //SORTER_H
