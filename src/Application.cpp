@@ -4,7 +4,7 @@ Application::Application(std::string title, uint width, uint height)
     :window({width, height}, title)
     ,width{width}
     ,height{height} {
-    
+
     //Seeds the random number function
     srand(time(NULL));
 
@@ -28,10 +28,11 @@ void Application::run(){
                 window.close();
         }
 
-        window.clear();
-        
+        clear();
+
+        array = sorter.bubbleSort(array);
         update();
-        window.display();
+        display();
     }
 }
 

@@ -12,7 +12,7 @@ class Application{
     private:
         sf::RenderWindow window;
         Sorter sorter;
-        std::array<int, 20> array;
+        std::array<int, 50> array;
         
         uint width;
         uint height;
