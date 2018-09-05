@@ -2,9 +2,11 @@
 
 Application::Application(std::string title, uint width, uint height)
     :window({width, height}, title)
+    ,sorter{width, height}
     ,width{width}
     ,height{height} {
 
+    sorted = false;
     //Seeds the random number function
     srand(time(NULL));
 
@@ -20,7 +22,7 @@ Application::Application(std::string title, uint width, uint height)
 
 Application::~Application(){}
 
-void Application::run(){
+void Application::run(){  
     while(window.isOpen()){
         sf::Event event;
         while(window.pollEvent(event)){
@@ -29,10 +31,12 @@ void Application::run(){
         }
 
         clear();
-
-        array = sorter.bubbleSort(array);
-        update();
-        display();
+        if(!sorted){
+            sorter.bubbleSort(array, window);
+            sorted = true;
+        }
+        update(); 
+        display();  
     }
 }
 
@@ -47,7 +51,6 @@ void Application::update(){
         currentRect.setPosition(i * currentRect.getSize().x, array[i]);
         draw(currentRect);
     }
-
 }
 
 void Application::draw(sf::RectangleShape rect){

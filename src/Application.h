@@ -14,6 +14,7 @@ class Application{
         Sorter sorter;
         std::array<int, 50> array;
         
+        bool sorted;
         uint width;
         uint height;
     public:
