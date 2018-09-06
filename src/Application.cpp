@@ -32,7 +32,8 @@ void Application::run(){
 
         clear();
         if(!sorted){
-            sorter.bubbleSort(array, window);
+            //sorter.bubbleSort(array, window);
+            sorter.selectionSort(array, window);
             sorted = true;
         }
         update(); 
@@ -45,8 +46,8 @@ void Application::clear(){
 }
 
 void Application::update(){
+    sf::RectangleShape currentRect((sf::Vector2f(width/array.size(), height)));
     for(int i = 0; i < array.size(); i++){
-        sf::RectangleShape currentRect((sf::Vector2f(width/array.size(), height)));
         currentRect.setFillColor(sf::Color::White);      
         currentRect.setPosition(i * currentRect.getSize().x, array[i]);
         draw(currentRect);
