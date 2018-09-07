@@ -24,6 +24,7 @@ class Application{
         void clear();
         void update();
         void draw(sf::RectangleShape rect);
+        void shuffle();
         void display();
 };
 

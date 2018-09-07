@@ -61,8 +61,10 @@ class Sorter{
             sf::RectangleShape currentRect((sf::Vector2f(width/array.size(), height)));
             for(int i = 0; i < array.size(); i++){
                 currentRect.setFillColor(sf::Color::White);
+                currentRect.setOutlineColor(sf::Color::Black);
+                currentRect.setOutlineThickness(1.5);
                 if(i == previous) currentRect.setFillColor(sf::Color(67, 130, 232, 255));
-                if(i == next) currentRect.setFillColor(sf::Color(9, 34, 76, 150));      
+                if(i == next) currentRect.setFillColor(sf::Color(9, 34, 76, 150));  
                 currentRect.setPosition(i * currentRect.getSize().x, array[i]);
                 
                 window.draw(currentRect);

@@ -10,9 +10,13 @@ Application::Application(std::string title, uint width, uint height)
     //Seeds the random number function
     srand(time(NULL));
 
+    //Sets the array
     for(int i = 0; i < array.size(); i++){
-        array[i] = rand() % height;
+        array[i] = height - (height/array.size()) * i;
     }
+
+    //Shuffles the array
+    shuffle();
 
     //Sets the window in the middle of the screen
     window.setPosition(sf::Vector2i
@@ -48,7 +52,9 @@ void Application::clear(){
 void Application::update(){
     sf::RectangleShape currentRect((sf::Vector2f(width/array.size(), height)));
     for(int i = 0; i < array.size(); i++){
-        currentRect.setFillColor(sf::Color::White);      
+        currentRect.setFillColor(sf::Color::White);
+        currentRect.setOutlineColor(sf::Color::Black);
+        currentRect.setOutlineThickness(1.5);      
         currentRect.setPosition(i * currentRect.getSize().x, array[i]);
         draw(currentRect);
     }
@@ -56,6 +62,15 @@ void Application::update(){
 
 void Application::draw(sf::RectangleShape rect){
     window.draw(rect);
+}
+
+void Application::shuffle(){
+    for(int i = 0; i < array.size(); i++){
+        int newIndex = rand() % array.size();
+        int temp = array[i];
+        array[i] = array[newIndex];
+        array[newIndex] = temp;
+    }
 }
 
 void Application::display(){
