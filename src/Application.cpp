@@ -16,7 +16,7 @@ Application::Application(std::string title, uint width, uint height)
     }
 
     //Shuffles the array
-    shuffle();
+    sorter.shuffle(array);
 
     //Sets the window in the middle of the screen
     window.setPosition(sf::Vector2i
@@ -37,7 +37,8 @@ void Application::run(){
         clear();
         if(!sorted){
             //sorter.bubbleSort(array, window);
-            sorter.selectionSort(array, window);
+            //sorter.selectionSort(array, window);
+            sorter.bogoSort(array, window);
             sorted = true;
         }
         update(); 
@@ -62,15 +63,6 @@ void Application::update(){
 
 void Application::draw(sf::RectangleShape rect){
     window.draw(rect);
-}
-
-void Application::shuffle(){
-    for(int i = 0; i < array.size(); i++){
-        int newIndex = rand() % array.size();
-        int temp = array[i];
-        array[i] = array[newIndex];
-        array[newIndex] = temp;
-    }
 }
 
 void Application::display(){

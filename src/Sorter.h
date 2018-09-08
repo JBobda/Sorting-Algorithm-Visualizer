@@ -43,6 +43,36 @@ class Sorter{
             }
         }
 
+        //Bogo Sort array template
+        template<size_t arraySize>
+        void bogoSort(std::array<int, arraySize>& array, sf::RenderWindow& window){
+            bool sorted = false;
+            while(!sorted){
+                shuffle(array);
+                draw(array, -1, -1, window);
+                sleep(window, 200);
+                for(int i = 0; i < array.size() - 1; i++){
+                    sorted = true;
+                    if(array[i] > array[i + 1]){
+                        sorted = false;
+                        break;
+                    }
+                }
+                
+            }
+        }
+
+        //Shuffle Function
+        template<size_t arraySize>
+        void shuffle(std::array<int, arraySize>& array){
+            for(int i = 0; i < array.size(); i++){
+                int newIndex = rand() % array.size();
+                int temp = array[i];
+                array[i] = array[newIndex];
+                array[newIndex] = temp;
+            }
+        }
+
         //Swap function
         template<size_t arraySize>
         void swap(std::array<int, arraySize>& array, int previous, int next, sf::RenderWindow& window){
@@ -81,8 +111,10 @@ class Sorter{
             std::this_thread::sleep_for(std::chrono::milliseconds(timeMS));
             sf::Event event;
             while(window.pollEvent(event)){
-                if(event.type == sf::Event::Closed)
+                if(event.type == sf::Event::Closed){
                     window.close();
+                    std::exit(0);
+                }
             }
         }
 };
