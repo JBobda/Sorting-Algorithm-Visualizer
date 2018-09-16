@@ -53,12 +53,75 @@ class Sorter{
                 sleep(window, 200);
                 for(int i = 0; i < array.size() - 1; i++){
                     sorted = true;
-                    if(array[i] > array[i + 1]){
+                    if(array[i] < array[i + 1]){
                         sorted = false;
                         break;
                     }
                 }
                 
+            }
+        }
+
+        //Merge Sort array template
+        template<size_t arraySize>
+        void mergeSort(std::array<int, arraySize>& array, sf::RenderWindow& window){
+            mergeSortHelper(array, 0, array.size()-1, window);
+        }
+
+        //Merge Sort Helper template
+        template<size_t arraySize>
+        void mergeSortHelper(std::array<int, arraySize>& array, int low, int high, sf::RenderWindow& window){
+            if(low < high){
+                int middle = (low + high) / 2;
+
+                mergeSortHelper(array, low, middle, window);
+                mergeSortHelper(array, middle + 1, high, window);
+                merge(array, low, middle, high, window);
+            }
+        }
+
+        //Merge Template
+        template<size_t arraySize>
+        void merge(std::array<int, arraySize>& array, int left, int middle, int right, sf::RenderWindow& window){
+            //Decleration of Iterator variables and temp array
+            int i = left;
+            int j = middle + 1;
+            int k = left;
+            std::array<int, arraySize> temp;
+
+            //Loop to move to combine the two seperate arrays until one is empty
+            while(i <= middle && j <= right){
+                if(array[i] >= array[j]){
+                    temp[k] = array[i];
+                    i++;
+                }else{
+                    temp[k] = array[j];
+                    j++;
+                }
+                k++;
+                draw(array, i, j, window);
+                sleep(window, 30);
+                
+            }
+
+            //Move the leftover elements of whichever array still has them
+            while(i <= middle){
+                temp[k] = array[i];
+                i++;
+                k++;
+            }
+            
+            while(j <= right){
+                temp[k] = array[j];
+                j++;
+                k++;
+            }
+            
+            //Move all of the elements in the Temp array to the Normal array
+            for(k = left; k <= right; k++){
+                array[k] = temp[k];
+                draw(array, k, -1, window);
+                sleep(window, 30);
             }
         }
 

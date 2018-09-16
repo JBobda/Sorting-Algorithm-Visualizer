@@ -38,7 +38,8 @@ void Application::run(){
         if(!sorted){
             //sorter.bubbleSort(array, window);
             //sorter.selectionSort(array, window);
-            sorter.bogoSort(array, window);
+            sorter.mergeSort(array, window);
+            //sorter.bogoSort(array, window);
             sorted = true;
         }
         update(); 
